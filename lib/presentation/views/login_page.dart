@@ -2,32 +2,33 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:login_provider_pattern/domain/usecase/login_usecase.dart';
 import 'package:login_provider_pattern/presentation/viewmodels/login_view_model.dart';
+import 'package:login_provider_pattern/presentation/views/home_page.dart';
 import 'package:login_provider_pattern/presentation/widgets/login_dialog.dart';
 
-class MyApp extends StatelessWidget {
+class LoginPage extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Flutter Demo',
+      title: 'Login Page',
       theme: ThemeData(
         primarySwatch: Colors.blue,
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
-      home: MyHomePage(title: 'Flutter Demo Home Page'),
+      home: MyLoginPage(title: 'Login Page'),
     );
   }
 }
 
-class MyHomePage extends StatefulWidget {
-  MyHomePage({Key key, this.title}) : super(key: key);
+class MyLoginPage extends StatefulWidget {
+  MyLoginPage({Key key, this.title}) : super(key: key);
   final String title;
 
   @override
-  _MyHomePageState createState() => _MyHomePageState();
+  _MyLoginPageState createState() => _MyLoginPageState();
 }
 
-class _MyHomePageState extends State<MyHomePage> {
+class _MyLoginPageState extends State<MyLoginPage> {
 
   var _emailController = TextEditingController();
   var _passController = TextEditingController();
@@ -37,7 +38,11 @@ class _MyHomePageState extends State<MyHomePage> {
 
     print("isLogin ::: $isLogin");
 
-    LoginDialog.show(context, isLogin);
+    if (isLogin) {
+      Navigator.of(context).push(MaterialPageRoute(builder: (context) => HomePage()));
+    } else {
+      LoginDialog.show(context, isLogin);
+    }
   }
 
   @override
