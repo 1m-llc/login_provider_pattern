@@ -1,18 +1,15 @@
 import 'package:flutter/material.dart';
 
 class LoginDialog {
-  static show(BuildContext context, bool isLogin) {
-    var titleText = (isLogin) ? Text('OK') : Text('NG');
-    var contentText = (isLogin) ? Text('ログイン成功') : Text('ログイン失敗');
+  static show(BuildContext context, String titleText, String contentText) {
 
-    // OKダイアログ 表示
     showDialog<int>(
       context: context,
       barrierDismissible: false,
       builder: (BuildContext context) {
         return AlertDialog(
-          title: titleText,
-          content: contentText,
+          title: Text(titleText),
+          content: Text(contentText),
           actions: <Widget>[
             FlatButton(
               child: Text('Cancel'),
